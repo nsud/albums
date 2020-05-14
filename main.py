@@ -26,7 +26,7 @@ def add_album():
     try:
         year = int(request.forms.get("year"))
     except:
-        return HTTPError(409, "Год введен неверно")
+        return HTTPError(400, "Год введен неверно")
     data = Album(
         artist = request.forms.get("artist"),
         genre = request.forms.get("genre"),
