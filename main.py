@@ -23,11 +23,17 @@ def albums(artist):
 
 @route("/albums", method="POST")
 def add_album():
+    try:
+        year = int(request.forms.get("year"))
+    except:
+        return HTTPError(409, "Год введен неверно")
     data = Album(
         artist = request.forms.get("artist"),
         genre = request.forms.get("genre"),
-        album = request.forms.get("album")
+        album = request.forms.get("album"),
+        year = year
     )
+
     mes = find_alb(request.forms.get("album"))
     if mes == "OK":
         new_mes = insert(data)
